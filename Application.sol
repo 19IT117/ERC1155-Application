@@ -36,13 +36,12 @@ contract marketPlace{
     }
 
     function transferBatch(address to, uint256[] calldata tokenID , uint256 [] calldata amount) public{
-       
-        for(uint i=0;i<=tokenID.length;++i){
+        for(uint i=0;i<tokenID.length;++i){
             if(tokenID[i]!=1){
                 require(contractAdr.balanceOf(to,tokenID[i])==0 , "Can't send more NFT");
             }
         }
-        contractAdr.safeBatchTransferFrom(msg.sender,to,tokenID,amount,"");
+        contractAdr.safeBatchTransferFrom(msg.sender,to,tokenID,amount,"0x00");
     }
     
     function withdraw() public payable{
